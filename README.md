@@ -1,6 +1,8 @@
 Codility
 ========
 
+Solutions for lessons from "Codility" in C
+
 Lesson 1 - "Time Complexity"
 
   TapeEquilibrium
