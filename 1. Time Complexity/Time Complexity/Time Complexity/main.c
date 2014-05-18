@@ -8,10 +8,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 // TapeEquilibrium
 // Minimize the value |(A[0] + ... + A[P-1]) - (A[P] + ... + A[N-1])|.
-// 100 out of 100 points
+// 100 out of 100 points on Codility
 int TapeEquilibrium(int A[], int N) {
     
     long long sum = 0;
@@ -35,9 +36,7 @@ int TapeEquilibrium(int A[], int N) {
     {
         right -= A[j - 1];
         left += A[j - 1];
-        
         tmp = abs(left - right);
-        
         if (min > tmp)
         {
             min = tmp;
@@ -49,7 +48,7 @@ int TapeEquilibrium(int A[], int N) {
 
 // FrogJmp
 // Count minimal number of jumps from position X to Y.
-// 100 out of 100 points
+// 100 out of 100 points on Codility
 int FrogJmp(int X, int Y, int D) {
     
     int result = 0;
@@ -59,8 +58,23 @@ int FrogJmp(int X, int Y, int D) {
     if (dist % D != 0) {
         result++;
     }
-    
     return result;
+}
+
+// PermMissingElem
+// A zero-indexed array A consisting of N different integers is given.
+// The array contains integers in the range [1..(N + 1)],
+// One element is missing. Your goal is to find that missing element.
+// 100 out of 100 points on Codility
+int PermMissingElem(int A[], int N) {
+    
+    double sum = (pow(N, 2) + 3 * N + 2) / 2;
+    int i;
+    
+    for (i = 0; i < N; i++) {
+        sum -= A[i];
+    }
+    return (int)sum;
 }
 
 
@@ -68,12 +82,7 @@ int main(int argc, const char * argv[])
 {
     
     // TapeEquilibrium testing
-    int A[5];
-    A[0] = 3;
-    A[1] = 1;
-    A[2] = 2;
-    A[3] = 4;
-    A[4] = 3;
+    int A[5] = {3, 1, 2, 4, 3};
     printf("1. TapeEquilibrium: %i\n", TapeEquilibrium(A, 5));
     
     int B[2];
@@ -86,6 +95,27 @@ int main(int argc, const char * argv[])
     printf("2. Frog jumps: %i\n", FrogJmp(X, Y, D));
     X = 1, Y = 1, D = 1;
     printf("   Frog jumps: %i\n", FrogJmp(X, Y, D));
+    
+    // PermMissingElem testing:
+    int C[100000];
+    C[0] = 2;
+    C[1] = 3;
+    C[2] = 1;
+    C[3] = 5;
+    
+    //
+    for (int i = 4; i < 100000; i++) {
+        C[i] = i + 2;
+    }
+    
+    printf("3. PermMissingElem: %i\n", PermMissingElem(C, 100000));
+    
+    int arr[1] = {1};
+    printf("   PermMissingElem: %i\n", PermMissingElem(arr, 1));
+    
+    int arr2[4] = {2, 3, 4, 5};
+    printf("   PermMissingElem: %i\n", PermMissingElem(arr2, 4));
+    
     
 }
 
