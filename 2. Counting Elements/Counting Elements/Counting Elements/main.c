@@ -29,9 +29,7 @@ int PermCheck(int A[], int N) {
             arr[A[i] - 1] = 1;
         }
     }
-    
     free(arr);
-    
     return 1;
 }
 
@@ -49,7 +47,6 @@ int FrogRiverOne(int X, int A[], int N) {
     }
     
     for (i = 0; i < N; i++){
-        
         if (arr[A[i] - 1] == -1) {
             arr[A[i] - 1] = i;
             jmp +=1;
@@ -59,18 +56,13 @@ int FrogRiverOne(int X, int A[], int N) {
             }
         }
     }
-    
     return -1;
     
 }
 
-
-
 int main(int argc, const char * argv[])
 {
-    
-    
-    
+    // PermCheck tests:
     int D[] = {4,1, 3, 2};
     int B[] = {4, 1, 3};
     int C[] = {2147483646};
@@ -79,12 +71,9 @@ int main(int argc, const char * argv[])
     printf("Permutation: %i\n", PermCheck(B, 3));
     printf("Permutation: %i\n", PermCheck(C, 1));
     
+    // FrogRiverOne tests:
     int A[8] = {1, 3, 1, 4, 2, 3, 5, 4};
-    
     printf("Frog jump time: %i\n", FrogRiverOne(5, A, 8));
-    
-    
-    
     
 }
 
