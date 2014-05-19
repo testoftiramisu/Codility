@@ -16,8 +16,8 @@ Lesson 1 - "Time Complexity"
 
 Lesson 2 - "Counting Elements"
 
-    PermCheck
-      Check whether array A is a permutation.
+  PermCheck
+    Check whether array A is a permutation.
     
-    FrogRiverOne
-      Find the earliest time when a frog can jump to the other side of a river.
+  FrogRiverOne
+    Find the earliest time when a frog can jump to the other side of a river.
