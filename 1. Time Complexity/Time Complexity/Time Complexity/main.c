@@ -52,10 +52,10 @@ int TapeEquilibrium(int A[], int N) {
 int FrogJmp(int X, int Y, int D) {
     
     int result = 0;
-    int dist = Y - X;
-    result = dist / D;
+    int dest = Y - X;
+    result = dest / D;
     
-    if (dist % D != 0) {
+    if (dest % D != 0) {
         result++;
     }
     return result;
