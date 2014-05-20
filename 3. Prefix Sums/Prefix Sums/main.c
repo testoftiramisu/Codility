@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 // Struct for returning of array
 // C - pointer to the array
@@ -17,6 +18,7 @@ struct Results {
     int L;
 };
 
+// Prefix sum example
 struct Results prefix_sums(int A[], int N) {
     
     struct Results result;
@@ -38,7 +40,7 @@ struct Results prefix_sums(int A[], int N) {
 // PassingCars
 // Count the number of passing cars on the road
 // 100 out of 100 points on Codility
-int solution(int A[], int N){
+int PassingCars(int A[], int N){
     
     int i = 0, east = 0, cars = 0;
     
@@ -57,6 +59,54 @@ int solution(int A[], int N){
     return cars;
 }
 
+// Genomic Range Query
+// Find the minimal nucleotide from a range of sequence DNA.
+// 100 out of 100 points on Codility
+struct Results GenomicRangeQuery(char *S, int P[], int Q[], int M) {
+    struct Results result;
+    
+    int i = 0, j = 0, tmp;
+    long len = strlen(S);
+    
+    int arr[len][4];
+    memset(arr, 0, len*4*sizeof(int));
+    
+    int *res = calloc(M, sizeof(int));
+    
+    // We keeping a "Prefix sum" of the number of occurences
+    // of each letter from the set [A,C,G,T] for every character in a string.
+    for(i = 0; i < len; i++) {
+        if(S[i] == 'A') arr[i][0] = 1;
+        if(S[i] == 'C') arr[i][1] = 1;
+        if(S[i] == 'G') arr[i][2] = 1;
+        if(S[i] == 'T') arr[i][3] = 1;
+    }
+    
+    // Prefixes computing
+    for(i = 1; i < len; i++){
+        for(j = 0; j < 4; j++){
+            arr[i][j] += arr[i-1][j];
+        }
+    }
+    
+    for(i = 0; i < M; i++){
+        for(j = 0; j < 4; j ++){
+            tmp = 0;
+            if(P[i] - 1 >= 0){
+                tmp = arr[P[i] - 1][j];
+            }
+            if(arr[Q[i]][j] - tmp > 0){
+                res[i] = j + 1;
+                break;
+            }
+        }
+    }
+    
+    result.C = res;
+    result.L = M;
+    return result;
+}
+
 int main(int argc, const char * argv[])
 {
     
@@ -73,7 +123,20 @@ int main(int argc, const char * argv[])
     
     // Passing cars test
     int B[] = {0, 1, 0, 1, 1};
-    printf("\nCars: %i ", solution(B, 5));
+    printf("\nCars: %i ", PassingCars(B, 5));
+    
+    // Genomic Range Query test
+    int P[] = {2, 5, 0};
+    int Q[] = {4, 5, 6};
+    char *S = "CAGCCTA";  // ACGT
+    
+    printf("\nGenomic Range Query:\n ");
+    s = GenomicRangeQuery(S, P, Q, 3);
+    for (int i = 0; i < s.L; i++)
+    {
+        printf("%i, ", (s.C[i]));
+    }
+               
     
 }
 

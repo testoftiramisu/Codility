@@ -85,9 +85,7 @@ int main(int argc, const char * argv[])
     int A[5] = {3, 1, 2, 4, 3};
     printf("1. TapeEquilibrium: %i\n", TapeEquilibrium(A, 5));
     
-    int B[2];
-    B[0] = -1000;
-    B[1] = 1000;
+    int B[2] = {-1000, 1000};
     printf("   TapeEquilibrium: %i\n", TapeEquilibrium(B, 2));
     
     // Frog Jump testing:
