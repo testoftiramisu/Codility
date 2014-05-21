@@ -105,6 +105,7 @@ struct Results GenomicRangeQuery(char *S, int P[], int Q[], int M) {
     result.C = res;
     result.L = M;
     return result;
+ 
 }
 
 int main(int argc, const char * argv[])
